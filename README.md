@@ -1,16 +1,5 @@
-# 🧪 Software Testing Labs - Чанарын Баталгаа ба Туршилт
+# Чанарын Баталгаа ба Туршилт
 
-**Student:** Munkhzorig  
-**University:** ШУТИС-МХТС  
-**Course:** Software Testing & Quality Assurance  
-**Year:** 2024-2025
-
----
-
-## 📋 Repository Structure
-
-```
-software-testing-labs/
 ├── Lab01_Selenium/          # Selenium WebDriver automation
 ├── Lab02_JMeter/            # Performance testing with JMeter
 ├── Lab03_Postman/           # API testing with Postman/Newman
@@ -24,11 +13,8 @@ software-testing-labs/
 ├── Lab12_FSM_Elevator/      # Finite State Machine testing
 ├── Lab13_AI_Testing/        # AI-powered automated testing
 └── README.md
-```
 
----
 
-## 🎯 Labs Overview
 
 | Lab | Title | Technology | Status |
 |-----|-------|------------|--------|
@@ -45,9 +31,7 @@ software-testing-labs/
 | 12 | FSM Testing | State Machines | ✅ Complete |
 | 13 | AI Testing | Claude API | ✅ Complete |
 
----
 
-## 🚀 Quick Start
 
 ### Lab 01: Selenium
 ```bash
@@ -102,7 +86,7 @@ python ai_test_generator.py
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies
 
 | Category | Tools |
 |----------|-------|
@@ -117,7 +101,7 @@ python ai_test_generator.py
 
 ---
 
-## 📊 Key Results
+## Key Results
 
 ### Lab 08: Unit Testing
 - **5 bugs found** in Meeting Planner
@@ -132,16 +116,3 @@ python ai_test_generator.py
 - **12 test cases** from choice-based analysis
 - All boundary conditions covered
 
----
-
-## 📝 License
-
-This project is for educational purposes at MUST.
-
----
-
-## 👨‍💻 Author
-
-**Munkhzorig**  
-Computer Science Student  
-ШУТИС-МХТС (Mongolian University of Science and Technology)
