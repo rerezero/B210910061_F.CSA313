@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "Binance API Tests - Lab03",
+    "_postman_id": "lab03-binance-tests",
+    "description": "Лаборатори 03: Postman ашиглан API туршилт",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get BTC Price",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT",
+          "protocol": "https",
+          "host": ["api", "binance", "com"],
+          "path": ["api", "v3", "ticker", "price"],
+          "query": [{"key": "symbol", "value": "BTCUSDT"}]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response is an object', function() {",
+              "    pm.expect(pm.response.json()).to.be.an('object');",
+              "});",
+              "",
+              "pm.test('Symbol is BTCUSDT', function() {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData.symbol).to.eql('BTCUSDT');",
+              "});",
+              "",
+              "pm.test('Price is valid number', function() {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(parseFloat(jsonData.price)).to.be.above(0);",
+              "});",
+              "",
+              "pm.test('Response time < 500ms', function() {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get ETH Price",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT",
+          "protocol": "https",
+          "host": ["api", "binance", "com"],
+          "path": ["api", "v3", "ticker", "price"],
+          "query": [{"key": "symbol", "value": "ETHUSDT"}]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Symbol is ETHUSDT', function() {",
+              "    pm.expect(pm.response.json().symbol).to.eql('ETHUSDT');",
+              "});",
+              "",
+              "pm.test('Price exists', function() {",
+              "    pm.expect(pm.response.json().price).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Prices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.binance.com/api/v3/ticker/price",
+          "protocol": "https",
+          "host": ["api", "binance", "com"],
+          "path": ["api", "v3", "ticker", "price"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response is array', function() {",
+              "    pm.expect(pm.response.json()).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Array has many items', function() {",
+              "    pm.expect(pm.response.json().length).to.be.above(100);",
+              "});",
+              "",
+              "pm.test('Each item has symbol and price', function() {",
+              "    const items = pm.response.json().slice(0, 5);",
+              "    items.forEach(item => {",
+              "        pm.expect(item.symbol).to.exist;",
+              "        pm.expect(item.price).to.exist;",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid Symbol - Error Test",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.binance.com/api/v3/ticker/price?symbol=INVALIDCOIN",
+          "protocol": "https",
+          "host": ["api", "binance", "com"],
+          "path": ["api", "v3", "ticker", "price"],
+          "query": [{"key": "symbol", "value": "INVALIDCOIN"}]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 400', function() {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test('Error code exists', function() {",
+              "    pm.expect(pm.response.json().code).to.exist;",
+              "});",
+              "",
+              "pm.test('Error message exists', function() {",
+              "    pm.expect(pm.response.json().msg).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get 24hr Ticker",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT",
+          "protocol": "https",
+          "host": ["api", "binance", "com"],
+          "path": ["api", "v3", "ticker", "24hr"],
+          "query": [{"key": "symbol", "value": "BTCUSDT"}]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Has price change info', function() {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data.priceChange).to.exist;",
+              "    pm.expect(data.priceChangePercent).to.exist;",
+              "    pm.expect(data.highPrice).to.exist;",
+              "    pm.expect(data.lowPrice).to.exist;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}
